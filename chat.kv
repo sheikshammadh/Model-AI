@@ -1,0 +1,31 @@
+<ChatBox>:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+
+    TextInput:
+        id: chat_history
+        size_hint_y: 0.85
+        readonly: True
+        font_size: 16
+        background_color: (1,1,1,1)
+        foreground_color: (0,0,0,1)
+        text: "Assistant: Hello! How can I help you?"
+
+    BoxLayout:
+        size_hint_y: 0.15
+        spacing: 5
+
+        TextInput:
+            id: user_input
+            multiline: False
+            hint_text: "Type something..."
+            on_text_validate: root.respond(self.text)
+
+        Button:
+            text: "Send"
+            on_press: root.respond(user_input.text)
+
+        Button:
+            text: "🎤"
+            on_press: root.listen_command()
